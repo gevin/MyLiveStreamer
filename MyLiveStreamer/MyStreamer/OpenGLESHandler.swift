@@ -116,7 +116,7 @@ let kColorConversion709:[GLfloat] = [
         self.setupVAO()
         self.setupVideoTextureCache()
         
-        self.setupDisplayFramebuffer()
+        self.setupRenderFramebuffer()
         self.setupYuvConvertFramebuffer()
         self.setupPixellateFramebuffer()
         
@@ -129,16 +129,14 @@ let kColorConversion709:[GLfloat] = [
         
         eaglLayer = glView?.layer as! CAEAGLLayer
         eaglLayer?.isOpaque = true
-        eaglLayer?.drawableProperties = [ kEAGLDrawablePropertyRetainedBacking: NSNumber(value: false), // render 完後，要不要保留 render 資料，預設是不保留
+        eaglLayer?.drawableProperties = [ kEAGLDrawablePropertyRetainedBacking: NSNumber(value: false),
                                           kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8 ]
         
-        // 设置OpenGLES的版本为2.0 当然还可以选择1.0和最新的3.0的版本，以后我们会讲到2.0与3.0的差异，目前为了兼容性选择2.0的版本
         eaglContext = EAGLContext(api: EAGLRenderingAPI.openGLES2 )
         if eaglContext == nil {
             fatalError("Failed to initialize OpenGLES 2.0 context")
         }
         
-        // 将当前上下文设置为我们创建的上下文
         guard EAGLContext.setCurrent(eaglContext) else {
             fatalError("Failed to set current OpenGL context")
         }
@@ -154,11 +152,9 @@ let kColorConversion709:[GLfloat] = [
              1.0,  1.0,    1.0, 1.0,
         ];
         
-        // 建立 vao
         glGenVertexArrays(1, &_vao)
         glBindVertexArray(_vao)
         
-        // 建立 vbo
         glGenBuffers(1, &_vbo);
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), _vbo);
         glBufferData(GLenum(GL_ARRAY_BUFFER), MemoryLayout<[GLfloat]>.size * vertices.count, vertices, GLenum(GL_STATIC_DRAW));
@@ -169,7 +165,6 @@ let kColorConversion709:[GLfloat] = [
     
     func setupVideoTextureCache() {
         if _coreVideoTextureCache == nil {
-            // 建立 textureCache
             var result:CVReturn = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, nil, self.eaglContext!, nil, &_coreVideoTextureCache)
             if result != kCVReturnSuccess {
                 fatalError( String(format:"Error at CVOpenGLESTextureCacheCreate %d", result))
@@ -177,13 +172,11 @@ let kColorConversion709:[GLfloat] = [
         }
     }
     
-    func setupDisplayFramebuffer() {
+    func setupRenderFramebuffer() {
 
-        // 建立 renderbuffer
         glGenRenderbuffers(1, &_colorRenderBuffer);
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), _colorRenderBuffer);
         
-        // 把 layer 的 display buffer 配置給 render buffer
         eaglContext?.renderbufferStorage(Int(GL_RENDERBUFFER), from: eaglLayer!)
         var backingWidth: GLint = 0
         var backingHeight: GLint = 0
@@ -370,7 +363,6 @@ let kColorConversion709:[GLfloat] = [
         let fragPath = Bundle.main.path(forResource: "yuvConvertShader", ofType: "fsh")!
         let fragShaderString = try! String(contentsOfFile: fragPath)
         
-        //加载shader
         self._yuvConvertProgram = GLProgram(vertexShaderString: vertShaderString, fragmentShaderString: fragShaderString)
         // init attributes, should before link()
         self._yuvConvertProgram?.addAttribute(attrName: "position")
@@ -397,9 +389,8 @@ let kColorConversion709:[GLfloat] = [
         let fragPath = Bundle.main.path(forResource: "PixellateShader", ofType: "fsh")!
         let fragShaderString = try! String(contentsOfFile: fragPath)
         
-        //加载shader
         self._pixelateProgram = GLProgram(vertexShaderString: vertShaderString, fragmentShaderString: fragShaderString)
-        // init attributes, should before link()
+        // init attributes should before link()
         self._pixelateProgram?.addAttribute(attrName: "position")
         self._pixelateProgram?.addAttribute(attrName: "inputTextureCoordinate")
         
@@ -423,9 +414,8 @@ let kColorConversion709:[GLfloat] = [
         let fragPath = Bundle.main.path(forResource: "DisplayShader", ofType: "fsh")!
         let fragShaderString = try! String(contentsOfFile: fragPath)
         
-        //加载shader
         self._displayProgram = GLProgram(vertexShaderString: vertShaderString, fragmentShaderString: fragShaderString)
-        // init attributes, should before link()
+        // init attributes should before link()
         self._displayProgram?.addAttribute(attrName: "position")
         self._displayProgram?.addAttribute(attrName: "inputTextureCoordinate")
         
@@ -498,8 +488,7 @@ let kColorConversion709:[GLfloat] = [
         let originX:GLfloat = GLfloat(-1.0 + (2.0 * (drawRect.origin.x/viewSize.width)) )
         let originY:GLfloat = GLfloat(-1.0 + (2.0 * (drawRect.origin.y/viewSize.height)) )
         let width = 2.0 * GLfloat(drawRect.width/viewSize.width)
-        let height = 2.0 * GLfloat(drawRect.height/viewSize.height) 
-        // -1 ~ 1 代表整個寬高的normalize，0代表中心，所以整個寬的比例是 2.0
+        let height = 2.0 * GLfloat(drawRect.height/viewSize.height)  
         /*.
          The quad vertex data defines the region of 2D plane onto which we draw our pixel buffers.
          Vertex data formed using (-1,-1) and (1,1) as the bottom left and top right coordinates respectively, covers the entire screen.
@@ -534,13 +523,11 @@ let kColorConversion709:[GLfloat] = [
         let textureCoordsIndex = self._displayProgram?.attributeLocation(name: "inputTextureCoordinate") 
         glVertexAttribPointer( textureCoordsIndex!, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textCoords)
         glEnableVertexAttribArray(textureCoordsIndex!)
-//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         
         glActiveTexture(GLenum(GL_TEXTURE1))
         glBindTexture(GLenum(GL_TEXTURE_2D), renderTexture)
         self._displayProgram?.setUniformi(uniformName: "inputImageTexture", integer1: 1)
         
-        //self.drawOnBuffer(framebuffer: self._displayFramebuffer)
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), _displayFramebuffer)
         
         glViewport(0, 0, GLsizei(framebufferSize.width), GLsizei(framebufferSize.height) );
@@ -593,7 +580,7 @@ let kColorConversion709:[GLfloat] = [
         CVOpenGLESTextureCacheFlush(_coreVideoTextureCache!, 0)
         
         if EAGLContext.current() != self.eaglContext {
-            EAGLContext.setCurrent(self.eaglContext) // 非常重要的一行代码
+            EAGLContext.setCurrent(self.eaglContext)
         }
 //        let startTime: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
 //        let currentTime: CMTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
@@ -683,8 +670,6 @@ let kColorConversion709:[GLfloat] = [
         } else {
             self.displayLayer(renderTexture: _yuvConvertTexture)
         } 
-        
-        // rgb 轉 i420
         
         // publish to rtmp server
         CVPixelBufferUnlockBaseAddress(cameraFrame, CVPixelBufferLockFlags.readOnly);

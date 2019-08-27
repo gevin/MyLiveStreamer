@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0AA0DC401F8346D100177498 /* MyStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0DC3D1F8346D100177498 /* MyStreamer.m */; };
-		0AC57FB31F7F5ACE00A03C7C /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC57FB21F7F5ACE00A03C7C /* RecordViewController.m */; };
+		0AC57FB31F7F5ACE00A03C7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC57FB21F7F5ACE00A03C7C /* ViewController.m */; };
 		0ACB60A91D859D5100319CF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACB60A81D859D5100319CF5 /* OpenGLES.framework */; };
 		0ACB60AB1D859D5700319CF5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACB60AA1D859D5700319CF5 /* QuartzCore.framework */; };
 		76C254E11B9DAEB700CE60B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C254E01B9DAEB700CE60B2 /* main.m */; };
 		76C254E41B9DAEB700CE60B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C254E31B9DAEB700CE60B2 /* AppDelegate.m */; };
-		76C254E71B9DAEB700CE60B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C254E61B9DAEB700CE60B2 /* ViewController.m */; };
 		76C254EC1B9DAEB700CE60B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C254EB1B9DAEB700CE60B2 /* Images.xcassets */; };
 		76C254EF1B9DAEB700CE60B2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C254ED1B9DAEB700CE60B2 /* LaunchScreen.xib */; };
 		76C254FB1B9DAEB800CE60B2 /* MyLiveStreamerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C254FA1B9DAEB800CE60B2 /* MyLiveStreamerTests.m */; };
@@ -49,8 +48,7 @@
 		EE6D81D12314CCB30088C54B /* VideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D81D02314CCB30088C54B /* VideoEncoder.m */; };
 		EE6D81D42314CCD10088C54B /* AudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D81D32314CCD10088C54B /* AudioEncoder.m */; };
 		EE6D81D72314DA480088C54B /* VideoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D81D62314DA480088C54B /* VideoConfig.m */; };
-		EEFD3EA42021842E00A48192 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEFD3EA32021842E00A48192 /* ViewController.xib */; };
-		EEFD3EA6202186EC00A48192 /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEFD3EA5202186EC00A48192 /* RecordViewController.xib */; };
+		EEFD3EA6202186EC00A48192 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEFD3EA5202186EC00A48192 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +64,8 @@
 /* Begin PBXFileReference section */
 		0AA0DC3C1F8346D100177498 /* MyStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStreamer.h; sourceTree = "<group>"; };
 		0AA0DC3D1F8346D100177498 /* MyStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStreamer.m; sourceTree = "<group>"; };
-		0AC57FB11F7F5ACE00A03C7C /* RecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
-		0AC57FB21F7F5ACE00A03C7C /* RecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		0AC57FB11F7F5ACE00A03C7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0AC57FB21F7F5ACE00A03C7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0ACB60A81D859D5100319CF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0ACB60AA1D859D5700319CF5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		76C254DB1B9DAEB700CE60B2 /* MyLiveStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLiveStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,8 +73,6 @@
 		76C254E01B9DAEB700CE60B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76C254E21B9DAEB700CE60B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76C254E31B9DAEB700CE60B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		76C254E51B9DAEB700CE60B2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		76C254E61B9DAEB700CE60B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		76C254EB1B9DAEB700CE60B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		76C254EE1B9DAEB700CE60B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		76C254F41B9DAEB800CE60B2 /* MyLiveStreamerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyLiveStreamerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,8 +239,7 @@
 		EE6D81D32314CCD10088C54B /* AudioEncoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioEncoder.m; sourceTree = "<group>"; };
 		EE6D81D52314DA480088C54B /* VideoConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoConfig.h; sourceTree = "<group>"; };
 		EE6D81D62314DA480088C54B /* VideoConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoConfig.m; sourceTree = "<group>"; };
-		EEFD3EA32021842E00A48192 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		EEFD3EA5202186EC00A48192 /* RecordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
+		EEFD3EA5202186EC00A48192 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,12 +337,9 @@
 				EE6CE2742309569000FF4D45 /* MyLiveStreamer-Bridging-Header.h */,
 				76C254E21B9DAEB700CE60B2 /* AppDelegate.h */,
 				76C254E31B9DAEB700CE60B2 /* AppDelegate.m */,
-				76C254E51B9DAEB700CE60B2 /* ViewController.h */,
-				76C254E61B9DAEB700CE60B2 /* ViewController.m */,
-				EEFD3EA32021842E00A48192 /* ViewController.xib */,
-				0AC57FB11F7F5ACE00A03C7C /* RecordViewController.h */,
-				0AC57FB21F7F5ACE00A03C7C /* RecordViewController.m */,
-				EEFD3EA5202186EC00A48192 /* RecordViewController.xib */,
+				0AC57FB11F7F5ACE00A03C7C /* ViewController.h */,
+				0AC57FB21F7F5ACE00A03C7C /* ViewController.m */,
+				EEFD3EA5202186EC00A48192 /* ViewController.xib */,
 				76C254EB1B9DAEB700CE60B2 /* Images.xcassets */,
 				76C254ED1B9DAEB700CE60B2 /* LaunchScreen.xib */,
 				76C254DE1B9DAEB700CE60B2 /* Supporting Files */,
@@ -793,10 +785,9 @@
 				EE67921A230AF50500D042A6 /* DisplayShader.vsh in Resources */,
 				EE67921C230AF52900D042A6 /* DisplayShader.fsh in Resources */,
 				EE679212230A82A000D042A6 /* yuvConvertShader.vsh in Resources */,
-				EEFD3EA42021842E00A48192 /* ViewController.xib in Resources */,
 				76C254EC1B9DAEB700CE60B2 /* Images.xcassets in Resources */,
 				EE679216230ADC2A00D042A6 /* PixellateShader.fsh in Resources */,
-				EEFD3EA6202186EC00A48192 /* RecordViewController.xib in Resources */,
+				EEFD3EA6202186EC00A48192 /* ViewController.xib in Resources */,
 				EE4954FA23151B2B002D121E /* README.md in Resources */,
 				EE679214230A82B300D042A6 /* yuvConvertShader.fsh in Resources */,
 			);
@@ -816,11 +807,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76C254E71B9DAEB700CE60B2 /* ViewController.m in Sources */,
 				76C254E41B9DAEB700CE60B2 /* AppDelegate.m in Sources */,
 				76C254E11B9DAEB700CE60B2 /* main.m in Sources */,
 				EE6D81D12314CCB30088C54B /* VideoEncoder.m in Sources */,
-				0AC57FB31F7F5ACE00A03C7C /* RecordViewController.m in Sources */,
+				0AC57FB31F7F5ACE00A03C7C /* ViewController.m in Sources */,
 				EE6D81D42314CCD10088C54B /* AudioEncoder.m in Sources */,
 				EE6CE2722309364700FF4D45 /* OpenGLESHandler.swift in Sources */,
 				EE4954F82314F626002D121E /* AudioConfig.m in Sources */,
